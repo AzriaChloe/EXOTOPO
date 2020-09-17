@@ -28,6 +28,11 @@ DESCRIPTION </meta>
 		<mixin spatial_frame_type="spherical"
 		optional_columns= "time_scale publisher bib_reference" >//epntap2#table-2_0</mixin>
 	<!--define ext -->
+	
+	    <column name="filepath"  type="text"
+			tablehead="filepath"
+      		description="The identifier of the random seed"
+			verbLevel="3"/>	
 
 	    <column name="random_seed"  type="text"
 			tablehead="random_seed"
@@ -48,6 +53,22 @@ DESCRIPTION </meta>
 			tablehead="H"  unit=""
       		description="Degree of smoothness"
 			verbLevel="1"/>
+			
+	    <column name="Latitude_Sampling"  type="double precision"
+			tablehead="Latitude_Sampling"  unit=""
+      		description="Latitude_Sampling"
+			verbLevel="15"/>
+			
+	    <column name="Longitude_Sampling"  type="double precision"
+			tablehead="Longitude_Sampling"  unit=""
+      		description="Latitude_Sampling"
+			verbLevel="15"/>
+			
+	    <column name="type"  type="text"
+			tablehead="type"  unit=""
+      		description="content of the file : GRAYFLAT, GRAYSHAD, TOPO"
+			verbLevel="2"/>
+
 
 	</table>
 
@@ -56,7 +77,7 @@ DESCRIPTION </meta>
 <!-- TABLE COMPLETE -->
 
 	<data id="import">
-		<sources>data/schema_donnees.csv</sources>
+		<sources>data/metadata.csv</sources>
 		<csvGrammar>
 			<rowfilter procDef="//products#define">
 				<bind name="table">"\schema.epn_core"</bind>
@@ -71,10 +92,10 @@ DESCRIPTION </meta>
 				
 				<!--varying valued columns-->
 				<!-- <var key="[column name 1]" source="[source column name]"> -->
-				<var key="target_name" source="sim_ref" />
-				<var key="granule_uid" source="sim_ref" />
-				<var key="granule_gid">"sim_topo" </var>
-				<var key="obs_id" source="sim_ref" />
+				<var key="target_name" source="filepath" />
+				<var key="granule_uid" source="filepath" />
+				<var key="granule_gid">"type" </var>
+				<var key="obs_id" source="filepath" />
 				<!--<var key="target_class">"planet" </var>
 				<var key="time_scale">"UTC" </var>-->
 
