@@ -1,4 +1,4 @@
-<resource schema="TOPO">
+<resource schema="EXOTOPO">
   <meta name="title">Topography of Exoplanets </meta>
   <meta name="description" format="plain">
 DESCRIPTION </meta>
@@ -31,8 +31,8 @@ DESCRIPTION </meta>
 	
 	    <column name="filepath"  type="text"
 			tablehead="filepath"
-      		description="The identifier of the random seed"
-			verbLevel="3"/>	
+      		description="The identifier of the random seed" 
+			verbLevel="3"/>	<!-- trouver le moyen d'ajouter un debut de nom de domaine-->
 
 	    <column name="random_seed"  type="text"
 			tablehead="random_seed"
@@ -66,7 +66,7 @@ DESCRIPTION </meta>
 			
 	    <column name="type"  type="text"
 			tablehead="type"  unit=""
-      		description="content of the file : GRAYFLAT, GRAYSHAD, TOPO"
+      		description="content of the file : GRAYFLAT, COLOSHAD, GRAYSHAD, TOPO"
 			verbLevel="2"/>
 
 
@@ -81,6 +81,10 @@ DESCRIPTION </meta>
 		<csvGrammar>
 			<rowfilter procDef="//products#define">
 				<bind name="table">"\schema.epn_core"</bind>
+				<!--<code>
+				# VOtable version 
+				@filelink = '/var/gavo/inputs/EXOTOPO/' + @filepath
+				</code>test : echec --> 
 			</rowfilter>
 		</csvGrammar>
 
@@ -94,7 +98,7 @@ DESCRIPTION </meta>
 				<!-- <var key="[column name 1]" source="[source column name]"> -->
 				<var key="target_name" source="filepath" />
 				<var key="granule_uid" source="filepath" />
-				<var key="granule_gid">"type" </var>
+				<var key="granule_gid" source="type" />
 				<var key="obs_id" source="filepath" />
 				<!--<var key="target_class">"planet" </var>
 				<var key="time_scale">"UTC" </var>-->
@@ -124,9 +128,10 @@ DESCRIPTION </meta>
 
 
 					<bind key="processing_level">5</bind> <!--niveau de traitement des données 6:ancillary (derivée)-->
-
+					<!--<bind key="filepath">@filepath</bind> test : echec --> 
+					
 					<bind name="dataproduct_type">@dataproduct_type</bind>
-					<bind name="measurement_type">"phys.mass#phys.size.radius"</bind>
+					<!--<bind name="measurement_type">"phys.mass#phys.size.radius"</bind>-->
 
 
 					<bind name="service_title">@service_title</bind>
