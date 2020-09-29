@@ -9,7 +9,7 @@ import os
 
 
 def addHeader (csvfile):
-    csvfile.write('id,filepath,random_seed,alpha,c1,H,Latitude_Sampling,Longitude_Sampling,type\n')
+    csvfile.write('filename,filepath,random_seed,alpha,c1,H,Latitude_Sampling,Longitude_Sampling,type\n')
     
 def CSVFiller (filename, csvfile,directory):
     S=filename.split('_')[0]
@@ -21,10 +21,9 @@ def CSVFiller (filename, csvfile,directory):
     else :
          T=filename[(len(filename)-13) : len(filename)-5]
 
-    csvfile.write(S+"_A"+A+"_C"+C+"_H"+H+"_"+T)
+    csvfile.write(filename)
     csvfile.write(',' )        
-    #csvfile.write("file:///var/gavo/inputs/EXOTOPO"+directory[1:] +'/'+filename)#filepath
-    csvfile.write(directory[1:] +'/'+filename)#filepath
+    csvfile.write(directory[1:] +'/')#filepath
     csvfile.write(',' )    
     csvfile.write(S)
     csvfile.write(',')    
