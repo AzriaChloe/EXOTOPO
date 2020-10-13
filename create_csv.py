@@ -19,8 +19,8 @@ def CSVFiller (filename, csvfile,directory):
     if (filename[(len(filename)-9) : len(filename)-5] =='TOPO'):
          T=filename[(len(filename)-9) : len(filename)-5]
     else :
-         T=filename[(len(filename)-13) : len(filename)-5]
-
+         T=filename[(len(filename)-12) : len(filename)-4]
+        
     csvfile.write(filename)
     csvfile.write(',' )        
     csvfile.write(directory[1:] +'/')#filepath
